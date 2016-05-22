@@ -65,10 +65,13 @@ V2F = $(PATH_V2F)v2f_manipulations.c \
       $(PATH_V2F)v2f_operators_float.c \
       $(PATH_V2F)v2f_utils.c
 
+UTILS = $(PATH_SRC)utils.c
+
 SOURCES = $(M4F)
 SOURCES += $(V4F)
 SOURCES += $(V3F)
 SOURCES += $(V2F)
+SOURCES += $(UTILS)
 
 # Objects
 OBJECTS = $(SOURCES:.c=.o)

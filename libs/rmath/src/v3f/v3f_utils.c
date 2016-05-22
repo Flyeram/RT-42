@@ -19,13 +19,12 @@ t_vector3f	*v3f_new_cpy(t_vector3f *src)
 
 t_vector3f	v3f_lerp(t_vector3f v1, t_vector3f v2, float lerp_factor)
 {
-	t_vector3f tmp;
+	return (v3f_add(v3f_mul_float(v3f_sub(v2, v1), lerp_factor), v1));
+}
 
-	tmp = v3f_sub(v2, v1);
-	tmp.x *= lerp_factor;
-	tmp.y *= lerp_factor;
-	tmp.z *= lerp_factor;
-	return (v3f_add(tmp, v1));
+t_vector3f	v3f_negative(t_vector3f v)
+{
+	return ((t_vector3f) { -v.x, -v.y, -v.z });
 }
 
 void		v3f_normalize(t_vector3f *vector)
@@ -36,4 +35,13 @@ void		v3f_normalize(t_vector3f *vector)
 	vector->x /= length;
 	vector->y /= length;
 	vector->z /= length;
+}
+
+
+inline int	v3f_to_color(t_vector3f color)
+{
+	return ((255 << 24) |
+			((unsigned char)(minf(color.x, 1.0f) * 255.0f) << 16) |
+			((unsigned char)(minf(color.y, 1.0f) * 255.0f) <<  8) |
+			((unsigned char)(minf(color.z, 1.0f) * 255.0f)      ));
 }

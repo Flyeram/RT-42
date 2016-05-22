@@ -28,7 +28,7 @@ PATH_HEADERS = -I includes/ \
 			   -I $(PATH_RMATH)/includes/ \
 			   -I $(PATH_MLX)/includes/
 
-SRC = $(PATH_SRC)main.c $(PATH_SRC)texture.c $(PATH_SRC)raytracer.c $(PATH_SRC)intersects.c
+SRC = $(PATH_SRC)main.c $(PATH_SRC)texture.c $(PATH_SRC)raytracer.c $(PATH_SRC)intersects.c $(PATH_SRC)camera.c
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror

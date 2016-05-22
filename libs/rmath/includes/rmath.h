@@ -57,12 +57,14 @@ t_vector4f		v4f_mul_float(t_vector4f v1, float val);
 t_vector4f		v4f_div_float(t_vector4f v1, float val);
 t_vector4f		v4f_cross(t_vector4f v1, t_vector4f v2);
 t_vector4f		v4f_lerp(t_vector4f v1, t_vector4f v2, float lerp_factor);
+t_vector4f		v4f_negative(t_vector4f v);
 t_vector4f		*v4f_new(float x, float y, float z, float w);
 t_vector4f		*v4f_new_cpy(t_vector4f *src);
 t_vector4f		*v4f_add_new(t_vector4f v1, t_vector4f v2);
 t_vector4f		*v4f_sub_new(t_vector4f v1, t_vector4f v2);
 t_vector4f		*v4f_mul_new(t_vector4f v1, t_vector4f v2);
 t_vector4f		*v4f_div_new(t_vector4f v1, t_vector4f v2);
+inline int		v4f_to_color(t_vector4f color);
 /*
 **	VECTOR3F METHODS
 */
@@ -80,6 +82,7 @@ t_vector3f		v3f_sub_float(t_vector3f v1, float val);
 t_vector3f		v3f_mul_float(t_vector3f v1, float val);
 t_vector3f		v3f_div_float(t_vector3f v1, float val);
 t_vector3f		v3f_lerp(t_vector3f v1, t_vector3f v2, float lerp_factor);
+t_vector3f		v3f_negative(t_vector3f v);
 t_vector3f		*v3f_new(float x, float y, float z);
 t_vector3f		*v3f_new_cpy(t_vector3f *src);
 t_vector3f		*v3f_add_new(t_vector3f v1, t_vector3f v2);
@@ -87,6 +90,7 @@ t_vector3f		*v3f_sub_new(t_vector3f v1, t_vector3f v2);
 t_vector3f		*v3f_mul_new(t_vector3f v1, t_vector3f v2);
 t_vector3f		*v3f_div_new(t_vector3f v1, t_vector3f v2);
 t_vector3f		v3f_cross(t_vector3f v1, t_vector3f v2);
+inline int		v3f_to_color(t_vector3f color);
 /*
 **	VECTOR2F METHODS
 */
@@ -104,11 +108,19 @@ t_vector2f		v2f_sub_float(t_vector2f v1, float val);
 t_vector2f		v2f_mul_float(t_vector2f v1, float val);
 t_vector2f		v2f_div_float(t_vector2f v1, float val);
 t_vector2f		v2f_lerp(t_vector2f v1, t_vector2f v2, float lerp_factor);
+t_vector2f		v2f_negative(t_vector2f v);
 t_vector2f		*v2f_new(float x, float y);
 t_vector2f		*v2f_new_cpy(t_vector2f *src);
 t_vector2f		*v2f_add_new(t_vector2f v1, t_vector2f v2);
 t_vector2f		*v2f_sub_new(t_vector2f v1, t_vector2f v2);
 t_vector2f		*v2f_mul_new(t_vector2f v1, t_vector2f v2);
 t_vector2f		*v2f_div_new(t_vector2f v1, t_vector2f v2);
+/*
+**	UTILS METHODS
+*/
+inline float	minf(float a, float b);
+inline int		mini(int a, int b);
+inline float	maxf(float a, float b);
+inline int		maxi(int a, int b);
 
 #endif

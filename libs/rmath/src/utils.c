@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   v2f_utils.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/13 02:44:49 by bkabbas           #+#    #+#             */
-/*   Updated: 2016/01/13 02:47:18 by bkabbas          ###   ########.fr       */
+/*   Created: 2016/01/13 04:04:35 by bkabbas           #+#    #+#             */
+/*   Updated: 2016/01/13 05:36:37 by bkabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rmath.h"
 
-t_vector2f	*v2f_new_cpy(t_vector2f *src)
+inline float	minf(float a, float b)
 {
-	return (v2f_new(src->x, src->y));
+	return (a < b ? a : b);
 }
 
-t_vector2f	v2f_lerp(t_vector2f v1, t_vector2f v2, float l)
+inline int		mini(int a, int b)
 {
-	t_vector2f tmp;
-
-	tmp = v2f_sub(v2, v1);
-	tmp.x *= l;
-	tmp.y *= l;
-	tmp = v2f_add(tmp, v1);
-	return (tmp);
+	return (a > b ? a : b);
 }
 
-t_vector2f	v2f_negative(t_vector2f v)
+inline float	maxf(float a, float b)
 {
-	return ((t_vector2f) { -v.x, -v.y });
+	return (a > b ? a : b);
+}
+
+inline int		maxi(int a, int b)
+{
+	return (a < b ? a : b);
 }
