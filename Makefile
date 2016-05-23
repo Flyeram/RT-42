@@ -23,12 +23,22 @@ DEBUG = no
 
 PATH_HEADERS = -I includes/ \
 			   -I $(PATH_FT)/includes/ \
-			   -I $(PATH_R3D)/includes/ \
 			   -I $(PATH_RLISTS)/includes/ \
 			   -I $(PATH_RMATH)/includes/ \
 			   -I $(PATH_MLX)/includes/
 
-SRC = $(PATH_SRC)main.c $(PATH_SRC)texture.c $(PATH_SRC)raytracer.c $(PATH_SRC)intersects.c $(PATH_SRC)camera.c
+SRC = $(PATH_SRC)main.c
+SRC += $(PATH_SRC)texture.c
+SRC += $(PATH_SRC)parser.c
+SRC += $(PATH_SRC)raytracer.c
+SRC += $(PATH_SRC)camera.c
+SRC += $(PATH_SRC)light.c
+SRC += $(PATH_SRC)object.c
+SRC += $(PATH_SRC)material.c
+SRC += $(PATH_SRC)cone.c
+SRC += $(PATH_SRC)sphere.c
+SRC += $(PATH_SRC)plane.c
+SRC += $(PATH_SRC)cylinder.c
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror

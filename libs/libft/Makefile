@@ -54,6 +54,7 @@ SOURCES = $(PATH_SRC)ft_isupper.c \
 		$(PATH_SRC)ft_strcpy.c \
 		$(PATH_SRC)ft_strrchr.c \
 		$(PATH_SRC)ft_atoi.c \
+		$(PATH_SRC)ft_atof.c \
 		$(PATH_SRC)ft_memswap.c \
 		$(PATH_SRC)ft_strdel.c \
 		$(PATH_SRC)ft_strrev.c \

@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <math.h>
 # include <ft_typedefs.h>
 # include <ft_structs.h>
 
@@ -33,6 +34,7 @@ void				*ft_memchr(const void *src, int c, size_t s_bytes);
 int					ft_memcmp(const void *s1, const void *s2, size_t s_bytes);
 void				ft_bzero(void *dst, size_t s_bytes);
 int					ft_atoi(const char *str);
+float				ft_atof(const char *str);
 size_t				ft_strlen(char const *str);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t length);

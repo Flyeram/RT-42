@@ -38,6 +38,7 @@ void		v3f_normalize(t_vector3f *vector)
 }
 
 
+
 inline int	v3f_to_color(t_vector3f color)
 {
 	return ((255 << 24) |

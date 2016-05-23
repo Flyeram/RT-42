@@ -46,14 +46,14 @@ char			**ft_strsplit(char const *s, char c, int *size)
 	int			bounds[5];
 	char		**ret;
 
-	if (s == NULL)
-		return (NULL);
 	bounds[2] = ft_strlen(s);
 	bounds[0] = ft_getnextxchar(s, (int)c, 0, +1);
 	bounds[1] = ft_getnextxchar(s, (int)c, bounds[2] - 1, -1);
 	if (bounds[0] > bounds[1])
 	{
 		ret = (char **)ft_memalloc((1) * sizeof(char **));
+		if (size != NULL)
+			*size = 0;
 		return (ret);
 	}
 	bounds[3] = 1;

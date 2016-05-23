@@ -1,5 +1,4 @@
 #include "raytracer.h"
-#include <stdio.h>
 
 int		rasterize(t_core *core)
 {
@@ -59,20 +58,6 @@ int		raycast(t_ray *ray, t_ray_hit *hit, t_object *ignore, t_scene *scene)
 	return (1);
 }
 
-t_vector3f	light_get_illumination(t_light *light, t_ray_hit *hit)
-{
-	float		angle;
-	t_vector3f	light_vec;
-
-	light_vec = v3f_normalized(v3f_sub(hit->point, light->position));
-	angle = v3f_dot(hit->normal, v3f_negative(light_vec));
-	if (angle <= 0)
-		return ((t_vector3f) { 0.0f, 0.0f, 0.0f });
-	else
-		return (v3f_mul(hit->object->mat->diffuse,
-						v3f_mul_float(light->intensity, angle)));
-}
-
 t_vector3f	calculate_lighting(t_scene *scene, t_ray_hit *hit)
 {
 	t_vector3f	color;
@@ -88,7 +73,10 @@ t_vector3f	calculate_lighting(t_scene *scene, t_ray_hit *hit)
 		photon.dir = v3f_sub(light->position, hit->point);
 		photon.length = v3f_length(photon.dir);
 		if (!raycast(&photon, &photon_hit, hit->object, scene))
-			color = v3f_add(color, light_get_illumination(light, hit));
+		{
+			color = v3f_add(color, light_get_diffuse(light, hit));
+			color = v3f_add(color, light_get_specular(light, hit));
+		}
 	}
 	return (color);
 }
