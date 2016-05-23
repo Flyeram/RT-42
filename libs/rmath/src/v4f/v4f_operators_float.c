@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rmath.h"
+#include "rmath_v4f.h"
 
 t_vector4f	v4f_add_float(t_vector4f v1, float val)
 {

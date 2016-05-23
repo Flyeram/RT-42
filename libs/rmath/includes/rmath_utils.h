@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rmath.h                                            :+:      :+:    :+:   */
+/*   rmath_utils.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,14 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RMATH_H
-# define RMATH_H
+#ifndef RMATH_UTILS_H
+# define RMATH_UTILS_H
 
-# include "rmath_utils.h"
-# include "rmath_v2f.h"
-# include "rmath_v3f.h"
-# include "rmath_v4f.h"
-# include "rmath_m4f.h"
+# include <stdlib.h>
+# include "rmath_typedefs.h"
+# include "rmath_structs.h"
+# define PI 3.14159265358979323846
 
+inline float	minf(float a, float b);
+inline int		mini(int a, int b);
+inline float	maxf(float a, float b);
+inline int		maxi(int a, int b);
+inline float	clampf(float val, float min, float max);
+inline int		clampi(int val, int min, int max);
+inline float	clampf01(float val);
 
 #endif

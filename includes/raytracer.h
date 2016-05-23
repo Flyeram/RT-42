@@ -3,7 +3,9 @@
 
 #include <libft.h>
 #include <rlists.h>
-#include <rmath.h>
+#include <rmath_v3f.h>
+#include <rmath_v2f.h>
+#include <rmath_utils.h>
 #include <mlx.h>
 #include "typedefs.h"
 #include "structs.h"

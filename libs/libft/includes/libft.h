@@ -125,17 +125,6 @@ int					ft_getnextxarraychar(const char *s,
 int					ft_isspace(int c);
 int					ft_islower(int c);
 int					ft_isupper(int c);
-/*
-**	MATH METHODS
-*/
-int					ft_abs(int nb);
-int					ft_max(int n1, int n2);
-int					ft_min(int n1, int n2);
-int					ft_clamp(int nb, int min, int max);
-int					ft_sqrt(int nb);
-float				ft_clampf(float nb, float min, float max);
-float				ft_clampf01(float nb);
-float				ft_pi();
 void				**ft_create_tab(int width, int height, size_t element_size);
 void				ft_delete_tab(void **tab, int height);
 /*

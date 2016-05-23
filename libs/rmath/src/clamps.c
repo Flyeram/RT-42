@@ -1,22 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clampf01.c                                      :+:      :+:    :+:   */
+/*   clamps.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 03:59:49 by bkabbas           #+#    #+#             */
-/*   Updated: 2015/11/27 04:16:15 by bkabbas          ###   ########.fr       */
+/*   Created: 2016/01/13 04:04:35 by bkabbas           #+#    #+#             */
+/*   Updated: 2016/01/13 05:36:37 by bkabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "rmath_utils.h"
 
-float		ft_clampf01(float nb)
+inline int		clampi(int val, int min, int max)
 {
-	if (nb >= 1.0f)
+	if (val < min)
+		return (min);
+	if (val > max)
+		return (max);
+	return (val);
+}
+
+inline float	clampf(float val, float min, float max)
+{
+	if (val < min)
+		return (min);
+	if (val > max)
+		return (max);
+	return (val);
+}
+
+inline float	clampf01(float val)
+{
+	if (val > 1.0f)
 		return (1.0f);
-	else if (nb <= 0.0f)
+	if (val < 0.0f)
 		return (0.0f);
-	return (nb);
+	return (val);
 }

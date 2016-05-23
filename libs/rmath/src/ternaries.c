@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ternaries.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 03:23:35 by bkabbas           #+#    #+#             */
-/*   Updated: 2015/11/28 04:32:15 by bkabbas          ###   ########.fr       */
+/*   Created: 2016/01/13 04:04:35 by bkabbas           #+#    #+#             */
+/*   Updated: 2016/01/13 05:36:37 by bkabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "rmath_utils.h"
 
-int		ft_abs(int n)
+inline float	minf(float a, float b)
 {
-	return (n < 0 ? n *= -1 : n);
+	return (a < b ? a : b);
+}
+
+inline int		mini(int a, int b)
+{
+	return (a > b ? a : b);
+}
+
+inline float	maxf(float a, float b)
+{
+	return (a > b ? a : b);
+}
+
+inline int		maxi(int a, int b)
+{
+	return (a < b ? a : b);
 }

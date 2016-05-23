@@ -49,7 +49,6 @@ SOURCES = $(PATH_SRC)ft_isupper.c \
 		$(PATH_SRC)ft_memmove.c \
 		$(PATH_SRC)ft_strcmp.c \
 		$(PATH_SRC)ft_strnstr.c \
-		$(PATH_SRC)ft_abs.c \
 		$(PATH_SRC)ft_memset.c \
 		$(PATH_SRC)ft_strcpy.c \
 		$(PATH_SRC)ft_strrchr.c \
@@ -59,19 +58,14 @@ SOURCES = $(PATH_SRC)ft_isupper.c \
 		$(PATH_SRC)ft_strdel.c \
 		$(PATH_SRC)ft_strrev.c \
 		$(PATH_SRC)ft_bzero.c \
-		$(PATH_SRC)ft_min.c \
 		$(PATH_SRC)ft_strdup.c \
 		$(PATH_SRC)ft_strsplit.c \
-		$(PATH_SRC)ft_clamp.c \
-		$(PATH_SRC)ft_pi.c \
 		$(PATH_SRC)ft_strequ.c \
 		$(PATH_SRC)ft_strstr.c \
-		$(PATH_SRC)ft_clampf.c \
 		$(PATH_SRC)ft_changesize_array.c \
 		$(PATH_SRC)ft_pushback_array.c \
 		$(PATH_SRC)ft_striter.c \
 		$(PATH_SRC)ft_strsub.c \
-		$(PATH_SRC)ft_clampf01.c \
 		$(PATH_SRC)ft_putchar.c \
 		$(PATH_SRC)ft_striteri.c \
 		$(PATH_SRC)ft_strtolower.c \
@@ -88,7 +82,6 @@ SOURCES = $(PATH_SRC)ft_isupper.c \
 		$(PATH_SRC)ft_strlcpy.c \
 		$(PATH_SRC)ft_strtrimarraychar.c \
 		$(PATH_SRC)ft_isalnum.c \
-		$(PATH_SRC)ft_max.c \
 		$(PATH_SRC)ft_putnbr.c \
 		$(PATH_SRC)ft_strlen.c \
 		$(PATH_SRC)ft_strtrimchar.c \

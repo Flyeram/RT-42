@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rmath.h"
+#include "rmath_m4f.h"
 
 void		m4f_identity(t_matrix4f *matrix)
 {

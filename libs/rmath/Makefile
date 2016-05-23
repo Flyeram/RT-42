@@ -65,7 +65,8 @@ V2F = $(PATH_V2F)v2f_manipulations.c \
       $(PATH_V2F)v2f_operators_float.c \
       $(PATH_V2F)v2f_utils.c
 
-UTILS = $(PATH_SRC)utils.c
+UTILS = $(PATH_SRC)ternaries.c \
+		$(PATH_SRC)clamps.c
 
 SOURCES = $(M4F)
 SOURCES += $(V4F)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rmath.h"
+#include "rmath_m4f.h"
 
 void	m4f_translate(t_matrix4f *matrix, t_vector3f t)
 {

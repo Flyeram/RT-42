@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rmath.h"
+#include "rmath_v3f.h"
 
 float		v3f_length(t_vector3f vector)
 {

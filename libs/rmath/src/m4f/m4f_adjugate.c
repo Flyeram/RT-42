@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rmath.h"
+#include "rmath_m4f.h"
 
 static void		m4f_adjugate_x(t_matrix4f *b, t_matrix4f *m)
 {
