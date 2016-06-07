@@ -16,16 +16,22 @@ static void parse_line(t_core *core, t_scene *scene, char **split)
 	if (ft_strcmp(split[0], "camera") == 0)
 		scene->camera = camera_new(parse_v3f(split + 1),
 									parse_v3f(split + 4),
-									parse_v3f(split + 7));
+									core->screen_size);
 	else if (ft_strcmp(split[0], "object") == 0)
 		list_push_back(scene->objects, object_parse(split + 1, scene));
 	else if (ft_strcmp(split[0], "material") == 0)
-		list_push_back(scene->materials, material_new(parse_v3f(split + 1),
-													parse_v3f(split + 4),
-													parse_v3f(split + 7)));
+		list_push_back(scene->materials, material_new(scene,
+					(t_vector3f [3])	{	parse_v3f(split + 1),
+											parse_v3f(split + 4),
+											parse_v3f(split + 7)
+										},
+													ft_atof(split[10]),
+													ft_atoi(split[11])));
 	else if (ft_strcmp(split[0], "light") == 0)
 		list_push_back(scene->lights, light_new(parse_v3f(split + 1),
-												(t_vector3f) { 1, 1, 1 }));
+												(t_vector3f) { 0.5f, 0.5f, 0.5f }));
+	else if (ft_strcmp(split[0], "texture") == 0)
+		list_push_back(scene->textures, tex_new_xpm(core->mlx, split[1]));
 	else if (ft_strcmp(split[0], "render") == 0)
 		core->screen_size = (t_vector2f){ft_atoi(split[1]), ft_atoi(split[2])};
 }
@@ -40,6 +46,7 @@ void		scene_parse(t_core *core, t_scene *scene, char *path)
 	scene->objects = list_new(sizeof(t_object *));
 	scene->lights = list_new(sizeof(t_light *));
 	scene->materials = list_new(sizeof(t_material *));
+	scene->textures = list_new(sizeof(t_texture *));
 	if ((fd = open(path, O_RDWR)) < 0)
 		exit(0);
 	while (get_next_line(fd, &line) == 1)

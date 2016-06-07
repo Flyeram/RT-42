@@ -19,6 +19,14 @@
 # include "rmath_typedefs.h"
 # include "rmath_structs.h"
 
+# define V2F_INIT(x, y)		(t_vector2f) { x, y }
+# define V2F_ZERO			(t_vector2f) { +0, +0 }
+# define V2F_ONE			(t_vector2f) { +1, +1 }
+# define V2F_UP				(t_vector2f) { +0, +1 }
+# define V2F_DOWN			(t_vector2f) { +0, -1 }
+# define V2F_RIGHT			(t_vector2f) { +1, +0 }
+# define V2F_LEFT			(t_vector2f) { -1, +0 }
+
 float			v2f_length(t_vector2f vector);
 float			v2f_dot(t_vector2f v1, t_vector2f v2);
 void			v2f_normalize(t_vector2f *vector);

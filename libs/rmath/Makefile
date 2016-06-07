@@ -6,7 +6,7 @@
 #    By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/18 21:24:52 by bkabbas           #+#    #+#              #
-#    Updated: 2016/01/18 23:32:51 by bkabbas          ###   ########.fr        #
+#    Updated: 2016/05/24 11:42:50 by bkabbas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,10 @@ PROF = no
 DEBUG = no
 
 # Paths
-PATH_HEADERS = -I includes/
-PATH_SRC = src/
-PATH_M4F = $(PATH_SRC)m4f/
-PATH_V4F = $(PATH_SRC)v4f/
-PATH_V3F = $(PATH_SRC)v3f/
-PATH_V2F = $(PATH_SRC)v2f/
+PATH_HEADERS = includes
+PATH_SRC = src
+PATH_SUB = m4f v4f v3f v2f .
+PATH_OBJ = obj
 
 # Debug
 ifeq ($(DEBUG), yes)
@@ -41,54 +39,77 @@ ifeq ($(OPTIMIZE), yes)
 	CFLAGS += -O3
 endif
 
+CFLAGS += -I
+
+vpath %.c $(addprefix $(PATH_SRC)/,$(PATH_SUB))
+
 # Sources
-M4F = $(PATH_M4F)m4f_manipulations.c \
-      $(PATH_M4F)m4f_operators.c \
-      $(PATH_M4F)m4f_adjugate.c \
-      $(PATH_M4F)m4f_initializers.c
+M4F = m4f_manipulations.c \
+      m4f_operators.c \
+      m4f_adjugate.c \
+      m4f_initializers.c
 
-V4F = $(PATH_V4F)v4f_manipulations.c \
-      $(PATH_V4F)v4f_operators.c \
-      $(PATH_V4F)v4f_operators_new.c \
-      $(PATH_V4F)v4f_operators_float.c \
-      $(PATH_V4F)v4f_utils.c
+V4F = v4f_manipulations.c \
+      v4f_operators.c \
+      v4f_operators_new.c \
+      v4f_operators_float.c \
+      v4f_utils.c
 
-V3F = $(PATH_V3F)v3f_manipulations.c \
-      $(PATH_V3F)v3f_operators.c \
-      $(PATH_V3F)v3f_operators_new.c \
-      $(PATH_V3F)v3f_operators_float.c \
-      $(PATH_V3F)v3f_utils.c
+V3F = v3f_manipulations.c \
+      v3f_operators.c \
+      v3f_operators_new.c \
+      v3f_operators_float.c \
+      v3f_utils.c
 
-V2F = $(PATH_V2F)v2f_manipulations.c \
-      $(PATH_V2F)v2f_operators.c \
-      $(PATH_V2F)v2f_operators_new.c \
-      $(PATH_V2F)v2f_operators_float.c \
-      $(PATH_V2F)v2f_utils.c
+V2F = v2f_manipulations.c \
+      v2f_operators.c \
+      v2f_operators_new.c \
+      v2f_operators_float.c \
+      v2f_utils.c
 
-UTILS = $(PATH_SRC)ternaries.c \
-		$(PATH_SRC)clamps.c
+UTILS = ternaries.c \
+		clamps.c
 
-SOURCES = $(M4F)
+SOURCES += $(M4F)
 SOURCES += $(V4F)
 SOURCES += $(V3F)
 SOURCES += $(V2F)
 SOURCES += $(UTILS)
 
+INCLUDES += rmath.h
+INCLUDES += rmath_structs.h
+INCLUDES += rmath_typedefs.h
+INCLUDES += rmath_utils.h
+INCLUDES += rmath_v2f.h
+INCLUDES += rmath_v3f.h
+INCLUDES += rmath_v2f.h
+INCLUDES += rmath_m4f.h
+
+# Headers
+HEADERS = $(addprefix $(PATH_HEADERS)/, $(INCLUDES))
+
 # Objects
-OBJECTS = $(SOURCES:.c=.o)
+OBJECTS += $(addprefix $(PATH_OBJ)/, $(M4F:%.c=%.o))
+OBJECTS += $(addprefix $(PATH_OBJ)/, $(V4F:%.c=%.o))
+OBJECTS += $(addprefix $(PATH_OBJ)/, $(V3F:%.c=%.o))
+OBJECTS += $(addprefix $(PATH_OBJ)/, $(V2F:%.c=%.o))
+OBJECTS += $(addprefix $(PATH_OBJ)/, $(UTILS:%.c=%.o))
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	@ar rc $(NAME) $(OBJECTS)
-	@ranlib $(NAME)
+	ar rcs $(NAME) $(OBJECTS)
 	@echo library linked correctly
 
-%.o: %.c
+$(OBJECTS): $(HEADERS) | $(PATH_OBJ)
+$(OBJECTS): $(PATH_OBJ)/%.o: %.c
 	$(CC) $(CFLAGS) $(PATH_HEADERS) -o $@ -c $<
 
+$(PATH_OBJ):
+	@-mkdir -p $@
+
 clean:
-	@rm -f $(OBJECTS)
+	@rm -rf $(PATH_OBJ)
 	@echo removed binary files
 
 fclean: clean

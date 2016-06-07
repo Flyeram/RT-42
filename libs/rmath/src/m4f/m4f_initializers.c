@@ -6,7 +6,7 @@
 /*   By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 04:22:13 by bkabbas           #+#    #+#             */
-/*   Updated: 2016/04/13 01:49:11 by bkabbas          ###   ########.fr       */
+/*   Updated: 2016/05/24 13:45:29 by bkabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,14 @@ void	m4f_rotate(t_matrix4f *matrix, t_vector3f r)
 	m4f_identity(&rx);
 	m4f_identity(&ry);
 	m4f_identity(&rz);
-
 	rx.m[1][1] = (float)cos(r.x);
 	rx.m[1][2] = -(float)sin(r.x);
 	rx.m[2][1] = (float)sin(r.x);
 	rx.m[2][2] = (float)cos(r.x);
-
 	ry.m[0][0] = (float)cos(r.y);
 	ry.m[0][2] = (float)sin(r.y);
 	ry.m[2][0] = -(float)sin(r.y);
 	ry.m[2][2] = (float)cos(r.y);
-
 	rz.m[0][0] = (float)cos(r.z);
 	rz.m[0][1] = -(float)sin(r.z);
 	rz.m[1][0] = (float)sin(r.z);

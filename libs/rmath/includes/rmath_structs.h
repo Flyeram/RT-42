@@ -19,6 +19,7 @@ struct					s_vector3f
 	float				y;
 	float				z;
 };
+
 struct					s_vector4f
 {
 	float				x;
@@ -26,11 +27,13 @@ struct					s_vector4f
 	float				z;
 	float				w;
 };
+
 struct					s_vector2f
 {
 	float				x;
 	float				y;
 };
+
 struct					s_matrix4f
 {
 	float				m[4][4];

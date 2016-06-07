@@ -6,7 +6,7 @@
 /*   By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 02:50:42 by bkabbas           #+#    #+#             */
-/*   Updated: 2016/01/13 02:52:57 by bkabbas          ###   ########.fr       */
+/*   Updated: 2016/05/24 14:58:15 by bkabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,17 @@ t_vector3f	v3f_negative(t_vector3f v)
 	return ((t_vector3f) { -v.x, -v.y, -v.z });
 }
 
-void		v3f_normalize(t_vector3f *vector)
+float		v3f_distance(t_vector3f v1, t_vector3f v2)
 {
-	float length;
-
-	length = v3f_length(*vector);
-	vector->x /= length;
-	vector->y /= length;
-	vector->z /= length;
+	return (sqrtf(POW2(v2.x - v1.x) +
+				POW2(v2.y - v1.y) +
+				POW2(v2.z - v1.z)));
 }
 
-
-inline int	v3f_to_color(t_vector3f color)
+int			v3f_to_color(t_vector3f color)
 {
-	return ((255 << 24) |
+	return ((0 << 24) |
 			((unsigned char)(minf(color.x, 1.0f) * 255.0f) << 16) |
-			((unsigned char)(minf(color.y, 1.0f) * 255.0f) <<  8) |
-			((unsigned char)(minf(color.z, 1.0f) * 255.0f)      ));
+			((unsigned char)(minf(color.y, 1.0f) * 255.0f) << 8) |
+			((unsigned char)(minf(color.z, 1.0f) * 255.0f)));
 }

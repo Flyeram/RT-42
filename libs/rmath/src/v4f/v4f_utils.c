@@ -6,7 +6,7 @@
 /*   By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 02:53:47 by bkabbas           #+#    #+#             */
-/*   Updated: 2016/01/13 03:54:35 by bkabbas          ###   ########.fr       */
+/*   Updated: 2016/05/24 13:44:48 by bkabbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ inline int	v4f_to_color(t_vector4f color)
 {
 	return (((unsigned char)(minf(color.w, 1.0f) * 255.0f) << 24) |
 			((unsigned char)(minf(color.x, 1.0f) * 255.0f) << 16) |
-			((unsigned char)(minf(color.y, 1.0f) * 255.0f) <<  8) |
-			((unsigned char)(minf(color.z, 1.0f) * 255.0f)      ));
+			((unsigned char)(minf(color.y, 1.0f) * 255.0f) << 8) |
+			((unsigned char)(minf(color.z, 1.0f) * 255.0f)));
 }

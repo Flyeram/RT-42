@@ -1,6 +1,6 @@
 #include "raytracer.h"
 
-t_light		*light_new(t_vector3f pos, t_vector3f color)
+t_light			*light_new(t_vector3f pos, t_vector3f color)
 {
 	t_light *lgt;
 
@@ -10,32 +10,41 @@ t_light		*light_new(t_vector3f pos, t_vector3f color)
 	return (lgt);
 }
 
-t_vector3f	light_get_diffuse(t_light *light, t_ray_hit *hit)
+int				light_is_eligible(t_light *light, t_ray_hit *hit, float *t)
 {
-	float		angle;
-	t_vector3f	light_vec;
+	t_vector3f dist;
 
-	light_vec = v3f_normalized(v3f_sub(hit->point, light->position));
-	angle = v3f_dot(hit->normal, v3f_negative(light_vec));
-	if (angle <= 0)
-		return ((t_vector3f) { 0.0f, 0.0f, 0.0f });
-	else
-		return (v3f_mul(hit->object->mat->diffuse,
-						v3f_mul_float(light->intensity, angle)));
-
+	dist = v3f_sub(light->position, hit->point);
+	if (v3f_dot(hit->normal, dist) <= 0.01f || (*t = sqrt(v3f_dot(dist, dist))) <= 0.01f)
+		return (0);
+	return (1);
 }
 
-t_vector3f	light_get_specular(t_light *light, t_ray_hit *hit)
+t_vector3f		light_get_ambiant(t_light *light, t_ray_hit *hit, float coef)
 {
-	t_vector3f	light_vec;
-	t_vector3f	normal;
-	float		dot;
-	float		spec;
+	t_vector3f	color;
 
-	light_vec = v3f_normalized(v3f_sub(hit->point, light->position));
-	dot = -v3f_dot(light_vec, hit->normal);
-	normal = v3f_mul_float(hit->normal, 2.0f * dot);
-	spec = maxf(-v3f_dot(v3f_add(normal, light_vec), light_vec), 0);
-	spec = powf(spec, 5);
-	return (v3f_mul_float(hit->object->mat->specular, spec));
+	color = v3f_mul(hit->object->mat->diffuse, calculate_texture_color(hit));
+	return (v3f_mul_float(v3f_mul(color, light->intensity), 0.2f * coef));
+}
+
+t_vector3f		light_get_diffuse(t_light *light, t_ray *photon, t_ray_hit *hit)
+{
+	t_vector3f	color;
+	float		lambert;
+
+	color = v3f_mul(hit->object->mat->diffuse, calculate_texture_color(hit));
+	lambert = v3f_dot(photon->dir, hit->normal);
+	return (v3f_mul_float(v3f_mul(color, light->intensity), lambert));
+}
+
+t_vector3f		light_get_specular(t_light *light, t_ray *ray, t_ray *photon, t_ray_hit *hit)
+{
+	t_vector3f	dir;
+	float		factor;
+
+	dir = v3f_mul_float(hit->normal, 2 * v3f_dot(hit->normal, photon->dir));
+	dir = v3f_sub(dir, photon->dir);
+	factor = pow(v3f_dot(dir, ray->dir), 20);
+	return (v3f_mul_float(light->intensity, 0.6f * factor));
 }

@@ -6,37 +6,35 @@ struct			s_scene
 	t_list		*objects;
 	t_list		*lights;
 	t_list		*materials;
+	t_list		*textures;
 	t_camera	*camera;
 };
 
 struct			s_camera
 {
-	t_vector3f	up;
-	t_vector3f	right;
-	t_vector3f	up_left;
 	t_vector3f	position;
-	t_vector3f	direction;
+	t_vector3f	rotation;
 	t_vector2f	viewport;
-	float		viewdist;
+	int			sampling;
 };
 
 struct			s_object
 {
 	t_vector3f	position;
-	t_vector3f	data;
+	t_vector3f	rotation;
 	float		radius;
 	t_material	*mat;
 	t_intersect	intersect;
-	t_normal	calculate_normal;
+	t_normal	normal;
 };
 
 struct			s_material
 {
+	t_texture	*texture;
 	t_vector3f	ambiant;
 	t_vector3f	diffuse;
 	t_vector3f	specular;
-	float		shininess;
-	float		shine_strength;
+	float		reflection;
 };
 
 struct			s_light
@@ -50,6 +48,7 @@ struct			s_ray
 	t_vector3f	start;
 	t_vector3f	dir;
 	float		length;
+	int			level;
 };
 
 struct			s_ray_hit

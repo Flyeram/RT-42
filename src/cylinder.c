@@ -2,40 +2,43 @@
 
 int			cylinder_intersect(t_ray *ray, t_object *obj, float *t)
 {
-	float		a;
-	float		b;
-	float		c;
-	float		det;
-	t_vector3f dist;
+	float		abc[3];
+	float		tmp[2];
+	float		discr;
+	t_vector3f	dist;
 
 	dist = v3f_sub(ray->start, obj->position);
-	a = ray->dir.x * ray->dir.x + ray->dir.z * ray->dir.z;
-	b = (2 * (ray->dir.x * dist.x)) + (2 * (ray->dir.z * dist.z));
-	c = (dist.x * dist.x + dist.z * dist.z) - (obj->radius * obj->radius);
-	det = (b * b) - (4 * a * c);
-	if (det < 0)
-		return (0);
-	det = sqrtf(det);
-	if (det > 0)
-		*t = minf((-b + det) / (2 * a), (-b - det) / (2 * a));
+	tmp[0] = v3f_dot(ray->dir, obj->rotation);
+	tmp[1] = v3f_dot(dist, obj->rotation);
+	abc[0] = v3f_dot(ray->dir, ray->dir) - POW2(tmp[0]);
+	abc[1] = 2 * (v3f_dot(ray->dir, dist) - (tmp[0] * tmp[1]));
+	abc[2] = v3f_dot(dist, dist) - POW2(tmp[1]) - POW2(obj->radius);
+	discr = abc[1] * abc[1] - (4 * abc[0] * abc[2]);
+	if (discr < 0)
+		return (-1);
 	else
-		*t = -det;
-	if (*t < 0.0f)
-		return (0);
-	return (1);
+		return (resolve_quadratic(discr, abc[0], abc[1], t));
 }
 
-t_vector3f	cylinder_calculate_normal(t_ray *r, t_ray_hit *h)
+int			cylinder_calculate_normal(t_ray *r, t_ray_hit *h)
 {
-	(void)r;
-	return (v3f_normalized(v3f_add((t_vector3f) { h->point.x, 0, h->point.z },
-			v3f_negative((t_vector3f) { h->object->position.x,
-										0,
-										h->object->position.z }))));
+	float		m;
+	t_vector3f	dist;
+	t_vector3f	tmp;
+
+	dist = v3f_sub(r->start, h->object->position);
+	m = v3f_dot(r->dir, h->object->rotation) *
+		h->delta + v3f_dot(dist, h->object->rotation);
+	h->normal = v3f_mul_float(r->dir, h->delta);
+	h->normal = v3f_add(h->normal, dist);
+	tmp = v3f_mul_float(h->object->rotation, m);
+	h->normal = v3f_sub(h->normal, tmp);
+	h->normal = v3f_normalized(h->normal);
+	return (1);
 }
 
 void		cylinder_init(t_object *obj)
 {
-	obj->intersect = &cylinder_intersect;
-	obj->calculate_normal = &cylinder_calculate_normal;
+	obj->intersect = cylinder_intersect;
+	obj->normal = cylinder_calculate_normal;
 }

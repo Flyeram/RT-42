@@ -1,32 +1,69 @@
 #include "raytracer.h"
 
-t_camera	*camera_new(t_vector3f pos, t_vector3f look, t_vector3f up)
+t_camera	*camera_new(t_vector3f pos, t_vector3f rotation, t_vector2f size)
 {
 	t_camera	*ret;
-	t_vector3f	ratio;
 
 	ret = malloc(sizeof(t_camera));
-	ret->viewdist = 1.0f;
-	ret->viewport = (t_vector2f) { 0.5f, 0.35f };
+	ret->viewport = size;
 	ret->position = pos;
-	ret->up = up;
-	ret->direction = v3f_normalized(v3f_sub(look, pos));
-	ret->right = v3f_cross(ret->up, ret->direction);
-	ret->up = v3f_cross(ret->direction, ret->right);
-	ratio = v3f_sub(v3f_mul_float(ret->up, ret->viewport.y / 2.0f),
-					v3f_mul_float(ret->right, ret->viewport.x / 2.0f));
-	ratio = v3f_add(ratio, v3f_mul_float(ret->direction, ret->viewdist));
-	ret->up_left = v3f_add(ret->position, ratio);
+	ret->rotation = rotation;
 	return (ret);
 }
 
-t_vector3f	camera_ray_dir(t_camera *cam, float x, float y, t_vector2f screen)
+t_vector3f	camera_direction(t_camera *cam, t_vector2f pos)
 {
-	t_vector3f sub;
+	t_vector3f	dir;
+	float		ratio;
 
-	x = (cam->viewport.x / screen.x) * x;
-	y = (cam->viewport.y / screen.y) * y;
-	sub = v3f_sub(v3f_mul_float(cam->right, x), v3f_mul_float(cam->up, y));
+	ratio = cam->viewport.x / cam->viewport.y;
+	pos.x = (2 * (pos.x / cam->viewport.x) - 1) * ratio * ZOOM;
+	pos.y = (1 - 2 * (pos.y / cam->viewport.y)) * ZOOM;
+	dir.x = pos.x * cos(cam->rotation.y) * cos(cam->rotation.x) +
+			pos.y * (cos(cam->rotation.y) * sin(cam->rotation.x) *
+			sin(cam->rotation.z) - sin(cam->rotation.y) *
+			cos(cam->rotation.z)) + cos(cam->rotation.y) *
+			sin(cam->rotation.x) * cos(cam->rotation.z) +
+			sin(cam->rotation.y) * sin(cam->rotation.z);
+	dir.y = pos.x * sin(cam->rotation.y) * cos(cam->rotation.x) +
+			pos.y * (sin(cam->rotation.y) * sin(cam->rotation.x) *
+			sin(cam->rotation.z) + cos(cam->rotation.y) *
+			cos(cam->rotation.z)) + sin(cam->rotation.y) *
+			sin(cam->rotation.x) * cos(cam->rotation.z) -
+			cos(cam->rotation.y) * sin(cam->rotation.z);
+	dir.z = pos.x * -sin(cam->rotation.x) + pos.y * cos(cam->rotation.x) *
+				sin(cam->rotation.z) + cos(cam->rotation.x) * cos(cam->rotation.z);
+	return (v3f_normalized(dir));
+}
 
-	return (v3f_sub(v3f_add(cam->up_left, sub), cam->position));
+void	camera_move(t_camera *cam, int key_code)
+{
+	if (key_code == MOVE_RIGHT)
+		cam->position.x -= 50;
+	else if (key_code == MOVE_LEFT)
+		cam->position.x += 50;
+	else if (key_code == MOVE_UP)
+		cam->position.y -= 50;
+	else if (key_code == MOVE_DOWN)
+		cam->position.y += 50;
+	else if (key_code == MOVE_FORWARD)
+		cam->position.z += 50;
+	else if (key_code == MOVE_BACK)
+		cam->position.z -= 50;
+}
+
+void	camera_rotate(t_camera *cam, int key_code)
+{
+	if (key_code == ROTATE_RIGHT)
+		cam->rotation.x -= 50;
+	else if (key_code == ROTATE_LEFT)
+		cam->rotation.x += 50;
+	else if (key_code == ROTATE_UP)
+		cam->rotation.y -= 50;
+	else if (key_code == ROTATE_DOWN)
+		cam->rotation.y += 50;
+	else if (key_code == ROTATE_FORWARD)
+		cam->rotation.z += 50;
+	else if (key_code == ROTATE_BACK)
+		cam->rotation.z -= 50;
 }

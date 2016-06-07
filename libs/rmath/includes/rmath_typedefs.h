@@ -13,6 +13,7 @@
 #ifndef RMATH_TYPEDEFS_H
 # define RMATH_TYPEDEFS_H
 
+typedef struct s_vector4f	t_color;
 typedef struct s_vector4f	t_vector4f;
 typedef struct s_vector3f	t_vector3f;
 typedef struct s_vector2f	t_vector2f;

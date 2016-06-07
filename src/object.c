@@ -6,7 +6,7 @@ t_object	*object_new(t_vector3f p, t_vector3f d, float r, t_material *m)
 
 	obj = malloc(sizeof(t_object));
 	obj->position = p;
-	obj->data = d;
+	obj->rotation = d;
 	obj->radius = r;
 	obj->mat = m;
 	return (obj);
@@ -22,6 +22,8 @@ void		object_set_type(t_object *obj, char *type)
 		cylinder_init(obj);
 	else if (ft_strcmp(type, "cone") == 0)
 		cone_init(obj);
+	else if (ft_strcmp(type, "disk") == 0)
+		disk_init(obj);
 	else
 		exit (0);
 }
