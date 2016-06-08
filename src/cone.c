@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cone.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/13 02:33:32 by bkabbas           #+#    #+#             */
+/*   Updated: 2016/01/18 17:58:18 by bkabbas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "raytracer.h"
 
 int			cone_intersect(t_ray *r, t_object *o, float *t)
@@ -22,7 +34,7 @@ int			cone_intersect(t_ray *r, t_object *o, float *t)
 		return (resolve_quadratic(det, abc[0], abc[1], t));
 }
 
-int		cone_calculate_normal(t_ray *r, t_ray_hit *h)
+int			cone_calculate_normal(t_ray *r, t_ray_hit *h)
 {
 	t_vector3f	dist;
 	t_vector3f	tmp;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rasterizer.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/13 02:33:32 by bkabbas           #+#    #+#             */
+/*   Updated: 2016/01/18 17:58:18 by bkabbas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "raytracer.h"
 
 void		rasterize(t_core *core)
@@ -6,6 +18,7 @@ void		rasterize(t_core *core)
 	int x;
 	int y;
 
+	// TEST WILL BE REMOVED AT A CERTAIN POINT
 	core->scene->camera->sampling = 1;
 	y = 0;
 	while (y < core->screen_size.y)
@@ -59,7 +72,6 @@ t_vector3f	calculate_sub_pixel(t_scene *scene, t_camera *cam, t_vector2f pos, fl
 		if (!ray_cast(&ray, &hit, scene))
 			break ;
 		color = v3f_add(color, calculate_lighting(scene, &ray, &hit, coef));
-		/*color = v3f_mul(color, calculate_texture_color(&hit));*/
 		coef *= hit.object->mat->reflection;
 		reflection = 2.0f * v3f_dot(ray.dir, hit.normal);
 		ray.start = hit.point;

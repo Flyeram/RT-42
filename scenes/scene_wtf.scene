@@ -1,0 +1,34 @@
+# DO NOT MODIFY OR AT YOUR OWN RISKS
+render 640 420
+# cam | POS          | Rotation 
+camera 500 -100 -1000 0 3.150 0
+# textures
+texture textures/greendragon.xpm
+# mat   |  AMBIAN T |  DIFFUSE  |  SPECULAR | REFLECTION
+material 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 0.0 0
+material 0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.4 -1
+material 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.0 1.0 0.8 -1
+material 0.5 0.5 0.0 0.5 0.5 0.0 0.5 0.5 0.0 0.0 -1
+material 0.5 1.0 0.5 0.5 1.0 0.5 0.5 1.0 0.5 0.0 -1
+material 0.5 0.0 0.0 0.5 0.0 0.0 0.5 0.0 0.0 0.3 -1
+material 0.0 0.3 0.0 0.0 0.3 0.0 0.0 0.3 0.0 1.0 -1
+# obj | TYPE | POS		 | VAL |R  |MAT|
+object sphere 200 300 200 0 0 0 150 0
+object sphere 300 300 200 0 0 0 150 1
+object sphere 400 300 200 0 0 0 150 2
+object sphere 500 300 200 0 0 0 150 0
+object sphere 600 300 200 0 0 0 150 1
+object sphere 700 300 200 0 0 0 150 2
+object sphere 900 300 200 0 0 0 150 0
+object sphere 950 250 0 0 0 0 50 2
+object sphere 950 380 0 0 0 0 50 6
+object plane 300 400 600 0 0 1 1 3
+object plane 300 400 200 0 1 0 1 4
+object plane 300 -500 200 0 1 0 1 4
+object cylinder -600 100 150 0 1 0 100 5
+object cone 1400 200 100 0 1 0 30 6
+ #object cone 5 5 -15 0 0 0 4 1
+# lgt |
+light 3000 -400 -4000
+light -2200 300 -4000
+light -1000 300 -4000

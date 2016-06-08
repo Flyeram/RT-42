@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 NAME = raytracer
+PLATFORM = linux
 PATH_SRC = src/
 
 PATH_RLISTS = libs/rlists
@@ -63,9 +64,13 @@ CLIBS =	-l ft \
 		-l rlists \
 		-l rmath \
 		-l mlx \
-		-l m \
-		-lXext \
-		-lX11
+		-l m
+
+ifeq ($(PLATFORM), linux)
+	CLIBS += -lXext -lX11
+else
+	CLIBS += -framework OpenGL -framework AppKit
+endif
 
 OBJ = $(SRC:.c=.o)
 

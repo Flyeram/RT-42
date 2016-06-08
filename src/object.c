@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   object.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/13 02:33:32 by bkabbas           #+#    #+#             */
+/*   Updated: 2016/01/18 17:58:18 by bkabbas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "raytracer.h"
 
 t_object	*object_new(t_vector3f p, t_vector3f d, float r, t_material *m)
@@ -9,6 +21,18 @@ t_object	*object_new(t_vector3f p, t_vector3f d, float r, t_material *m)
 	obj->rotation = d;
 	obj->radius = r;
 	obj->mat = m;
+	return (obj);
+}
+
+t_object	*object_parse(char **split, t_scene *scene)
+{
+	t_object *obj;
+
+	obj = object_new(parse_v3f(split + 1),
+					parse_v3f(split + 4),
+					ft_atof(split[7]),
+					list_get_data_at(scene->materials, ft_atoi(split[8])));
+	object_set_type(obj, split[0]);
 	return (obj);
 }
 
@@ -26,16 +50,4 @@ void		object_set_type(t_object *obj, char *type)
 		disk_init(obj);
 	else
 		exit (0);
-}
-
-t_object	*object_parse(char **split, t_scene *scene)
-{
-	t_object *obj;
-
-	obj = object_new(parse_v3f(split + 1),
-					parse_v3f(split + 4),
-					ft_atof(split[7]),
-					list_get_data_at(scene->materials, ft_atoi(split[8])));
-	object_set_type(obj, split[0]);
-	return (obj);
 }
