@@ -6,7 +6,7 @@
 #    By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/18 21:24:52 by bkabbas           #+#    #+#              #
-#    Updated: 2016/01/18 23:32:51 by bkabbas          ###   ########.fr        #
+#    Updated: 2016/06/28 20:23:36 by Rakiah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ DEBUG = no
 
 # Paths rlists
 
-PATH_RLISTS = ../rlists
+PATH_RCONTAINERS = ../rcontainers
 
 # Paths
-PATH_HEADERS = -I includes/ -I $(PATH_RLISTS)/includes/
-PATH_SRC = src/
+PATH_HEADERS = -I includes/ -I $(PATH_RCONTAINERS)/includes/
+PATH_SRC = sources/
 
 # Debug
 ifeq ($(DEBUG), yes)
@@ -59,28 +59,24 @@ SOURCES = $(PATH_SRC)ft_isupper.c \
 		$(PATH_SRC)ft_strrev.c \
 		$(PATH_SRC)ft_bzero.c \
 		$(PATH_SRC)ft_strdup.c \
+		$(PATH_SRC)ft_strndup.c \
 		$(PATH_SRC)ft_strsplit.c \
 		$(PATH_SRC)ft_strequ.c \
 		$(PATH_SRC)ft_strstr.c \
-		$(PATH_SRC)ft_changesize_array.c \
-		$(PATH_SRC)ft_pushback_array.c \
 		$(PATH_SRC)ft_striter.c \
 		$(PATH_SRC)ft_strsub.c \
 		$(PATH_SRC)ft_putchar.c \
 		$(PATH_SRC)ft_striteri.c \
 		$(PATH_SRC)ft_strtolower.c \
-		$(PATH_SRC)ft_create_array.c \
 		$(PATH_SRC)ft_putchar_fd.c \
 		$(PATH_SRC)ft_strjoin.c \
 		$(PATH_SRC)ft_strtoupper.c \
-		$(PATH_SRC)ft_getnextxarraychar.c \
 		$(PATH_SRC)ft_putendl.c \
 		$(PATH_SRC)ft_strlcat.c \
 		$(PATH_SRC)ft_strtrim.c \
 		$(PATH_SRC)ft_getnextxchar.c \
 		$(PATH_SRC)ft_putendl_fd.c \
 		$(PATH_SRC)ft_strlcpy.c \
-		$(PATH_SRC)ft_strtrimarraychar.c \
 		$(PATH_SRC)ft_isalnum.c \
 		$(PATH_SRC)ft_putnbr.c \
 		$(PATH_SRC)ft_strlen.c \
@@ -113,11 +109,7 @@ SOURCES = $(PATH_SRC)ft_isupper.c \
 		$(PATH_SRC)ft_memdel.c \
 		$(PATH_SRC)ft_strchr_count.c \
 		$(PATH_SRC)ft_strnequ.c \
-		$(PATH_SRC)ft_pushfront_array.c \
 		$(PATH_SRC)ft_strchrnul.c \
-		$(PATH_SRC)ft_delete_array.c \
-		$(PATH_SRC)ft_del_at_array.c \
-		$(PATH_SRC)ft_delrange_at_array.c \
 		$(PATH_SRC)ft_strnchr.c \
 		$(PATH_SRC)ft_create_tab.c \
 		$(PATH_SRC)ft_delete_tab.c \

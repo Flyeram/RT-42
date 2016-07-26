@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<scene>
+	<resolution width= "1280" height= "720" />
+	<ambient-light r= "0.3" g= "0.3" b= "0.3" />
+	<camera>
+		<position x= "250" y= "200" z= "-150" />
+		<direction x= "0" y= "0" z= "0" />
+	</camera>
+	<textures nb= "1" >
+		<texture file= "textures/brick.bmp" />
+	</textures>
+	<materials nb= "2" >
+		<material>
+			<color r= "1" g= "1" b= "1" />
+			<texture texture= "1" offx= "0" offy= "0" coefx= "1" coefy= "1" />
+			<brightness> 15.8 </brightness>
+			<reflection> 1.0 </reflection>
+			<refraction> 1 </refraction>
+			<transparency> 0 </transparency>
+		</material>
+		<material>
+			<color r= "1" g= "1" b= "1" />
+			<texture texture= "0" offx= "0" offy= "0" coefx= "3" coefy= "3" />
+			<brightness> 15.4 </brightness>
+			<reflection> 1.0 </reflection>
+			<refraction> 1 </refraction>
+			<transparency> 0 </transparency>
+		</material>
+	</materials>
+		<objects nb= "2" >
+		<object>
+			<type> sphere </type>
+			<position x= "0" y= "200" z= "0" />
+			<direction x= "1" y= "1" z= "1" />
+			<size> 50 </size>
+			<material> 2 </material>
+		</object>
+		<object>
+			<type> sphere </type>
+			<position x= "200" y= "200" z= "-50" />
+			<direction x= "0" y= "1" z= "0" />
+			<size> 50 </size>
+			<material> 1 </material>
+		</object>
+	</objects>
+	<lights nb= "0" >
+	</lights>
+</scene>

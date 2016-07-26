@@ -3,49 +3,26 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: tbalu <tbalu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/01/18 21:30:01 by bkabbas           #+#    #+#              #
-#    Updated: 2016/03/23 15:56:44 by bkabbas          ###   ########.fr        #
+#    Created: 2016/06/21 15:25:27 by Rakiah            #+#    #+#              #
+#    Updated: 2016/06/28 20:46:24 by Rakiah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+CC = gcc
 NAME = raytracer
-PLATFORM = linux
-PATH_SRC = src/
+CFLAGS = -Wall -Wextra -Werror
+CLIBS = -l ft -l rcontainers -l rmath -l m -l SDL2_ttf -l SDL2 -l pthread
 
-PATH_RLISTS = libs/rlists
-PATH_FT = libs/libft
+PATH_RCONTAINERS = libs/rcontainers
 PATH_RMATH = libs/rmath
-PATH_MLX = libs/minilibx
+PATH_FT = libs/libft
+PATH_SDL = ~/.brew/lib
+PATH_SRC = sources/
 
 OPTIMIZE = yes
 DEBUG = no
-
-PATH_HEADERS = -I includes/ \
-			   -I $(PATH_FT)/includes/ \
-			   -I $(PATH_RLISTS)/includes/ \
-			   -I $(PATH_RMATH)/includes/ \
-			   -I $(PATH_MLX)/includes/
-
-SRC = $(PATH_SRC)main.c
-SRC += $(PATH_SRC)texture.c
-SRC += $(PATH_SRC)parser.c
-SRC += $(PATH_SRC)rasterizer.c
-SRC += $(PATH_SRC)ray.c
-SRC += $(PATH_SRC)camera.c
-SRC += $(PATH_SRC)light.c
-SRC += $(PATH_SRC)object.c
-SRC += $(PATH_SRC)material.c
-SRC += $(PATH_SRC)cone.c
-SRC += $(PATH_SRC)sphere.c
-SRC += $(PATH_SRC)plane.c
-SRC += $(PATH_SRC)cylinder.c
-SRC += $(PATH_SRC)disk.c
-SRC += $(PATH_SRC)formula.c
-
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
 
 ifeq ($(OPTIMIZE), yes)
 	CFLAGS += -O3
@@ -55,22 +32,62 @@ ifeq ($(DEBUG), yes)
 	CFLAGS += -O0 -g
 endif
 
-CLIBS_PATH =	-L $(PATH_RLISTS)/ \
-				-L $(PATH_RMATH)/ \
-				-L $(PATH_FT)/ \
-				-L $(PATH_MLX)/
 
-CLIBS =	-l ft \
-		-l rlists \
-		-l rmath \
-		-l mlx \
-		-l m
+CLIBS_PATH += -L $(PATH_RCONTAINERS)/
+CLIBS_PATH += -L $(PATH_RMATH)/
+CLIBS_PATH += -L $(PATH_FT)/
+CLIBS_PATH += -L $(PATH_SDL)/
 
-ifeq ($(PLATFORM), linux)
-	CLIBS += -lXext -lX11
-else
-	CLIBS += -framework OpenGL -framework AppKit
-endif
+PATH_HEADERS += -I includes/
+PATH_HEADERS += -I $(PATH_FT)/includes/
+PATH_HEADERS += -I $(PATH_RCONTAINERS)/includes/
+PATH_HEADERS += -I $(PATH_RMATH)/includes/
+PATH_HEADERS += -I libs/SDL2/includes/
+
+SRC += $(PATH_SRC)main.c
+SRC += $(PATH_SRC)core_methods.c
+SRC += $(PATH_SRC)texture.c
+SRC += $(PATH_SRC)rasterizer.c
+SRC += $(PATH_SRC)ray.c
+SRC += $(PATH_SRC)camera.c
+SRC += $(PATH_SRC)light.c
+SRC += $(PATH_SRC)cone.c
+SRC += $(PATH_SRC)sphere.c
+SRC += $(PATH_SRC)plane.c
+SRC += $(PATH_SRC)cylinder.c
+SRC += $(PATH_SRC)disk.c
+SRC += $(PATH_SRC)formula.c
+SRC += $(PATH_SRC)parser.c
+SRC += $(PATH_SRC)parse_camera.c
+SRC += $(PATH_SRC)parse_texture.c
+SRC += $(PATH_SRC)parse_material.c
+SRC += $(PATH_SRC)parse_material_2.c
+SRC += $(PATH_SRC)parse_material_3.c
+SRC += $(PATH_SRC)parse_object.c
+SRC += $(PATH_SRC)parse_object_2.c
+SRC += $(PATH_SRC)parse_light.c
+SRC += $(PATH_SRC)parse_light_2.c
+SRC += $(PATH_SRC)parse_utilities.c
+SRC += $(PATH_SRC)utilities.c
+SRC += $(PATH_SRC)screenshot.c
+SRC += $(PATH_SRC)key_down.c
+SRC += $(PATH_SRC)key_up.c
+SRC += $(PATH_SRC)mouse_up.c
+SRC += $(PATH_SRC)mouse_down.c
+SRC += $(PATH_SRC)mouse_motion.c
+SRC += $(PATH_SRC)mouse_pos.c
+SRC += $(PATH_SRC)ui_element.c
+SRC += $(PATH_SRC)interface.c
+SRC += $(PATH_SRC)element_hooks.c
+SRC += $(PATH_SRC)keycode_converter.c
+SRC += $(PATH_SRC)button_hooks.c
+SRC += $(PATH_SRC)label.c
+SRC += $(PATH_SRC)progress_bar.c
+SRC += $(PATH_SRC)reflection_refraction.c
+SRC += $(PATH_SRC)multithread.c
+SRC += $(PATH_SRC)post_effects.c
+SRC += $(PATH_SRC)blurr.c
+SRC += $(PATH_SRC)releaser.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -78,9 +95,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C $(PATH_FT)/
-	make -C $(PATH_RLISTS)/
+	make -C $(PATH_RCONTAINERS)/
 	make -C $(PATH_RMATH)/
-	make -C $(PATH_MLX)/
 	$(CC) $(CFLAGS) $(CLIBS_PATH) -o $(NAME) $(OBJ) $(CLIBS)
 
 %.o: %.c
@@ -92,17 +108,15 @@ nolib: $(NAME)
 clean:
 	@rm -f $(OBJ)
 	make -C $(PATH_FT)/ clean
-	make -C $(PATH_RLISTS)/ clean
+	make -C $(PATH_RCONTAINERS)/ clean
 	make -C $(PATH_RMATH)/ clean
-	make -C $(PATH_MLX)/ clean
 	@echo removed binary files
 
 fclean: clean
 	@rm -f $(NAME)
 	make -C $(PATH_FT)/ fclean
-	make -C $(PATH_RLISTS)/ fclean
+	make -C $(PATH_RCONTAINERS)/ fclean
 	make -C $(PATH_RMATH)/ fclean
-	make -C $(PATH_MLX)/ clean
 	@echo removed library
 
 re: fclean all

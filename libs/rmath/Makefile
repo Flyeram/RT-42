@@ -6,7 +6,7 @@
 #    By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/18 21:24:52 by bkabbas           #+#    #+#              #
-#    Updated: 2016/05/24 11:42:50 by bkabbas          ###   ########.fr        #
+#    Updated: 2016/06/22 20:09:27 by Rakiah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ DEBUG = no
 
 # Paths
 PATH_HEADERS = includes
-PATH_SRC = src
+PATH_SRC = sources
 PATH_SUB = m4f v4f v3f v2f .
-PATH_OBJ = obj
+PATH_OBJ = objects
 
 # Debug
 ifeq ($(DEBUG), yes)

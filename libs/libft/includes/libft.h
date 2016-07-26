@@ -6,7 +6,7 @@
 /*   By: bkabbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 15:42:12 by bkabbas           #+#    #+#             */
-/*   Updated: 2016/01/18 17:30:00 by bkabbas          ###   ########.fr       */
+/*   Updated: 2016/06/13 19:56:25 by Rakiah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t length);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strdup(const char *src);
+char				*ft_strndup(const char *src, size_t n);
 char				*ft_strncpy(char *dst, const char *src, size_t n);
 char				*ft_strcat(char *dst, const char *src);
 char				*ft_strncat(char *dst, const char *src, size_t n);

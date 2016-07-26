@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<scene>
+	<resolution width= "1280" height= "800" />
+	<ambient-light r= "0.1" g= "0.1" b= "0.1" />
+	<camera>
+		<position x= "500" y= "-100" z= "-1000" />
+		<direction x= "3.150" y= "0" z= "3.150" />
+	</camera>
+	<textures nb= "1" >
+		<texture file= "textures/brick.bmp" />
+	</textures>
+	<materials nb= "7" >
+		<material>
+			<color r= "1" g= "1" b= "1" />
+			<texture texture= "1" offx= "0" offy= "0" coefx= "1" coefy= "1" />
+			<brightness> 15.8 </brightness>
+			<reflection> 0 </reflection>
+			<refraction> 0.8 </refraction>
+			<transparency> 0 </transparency>
+		</material>
+		<material>
+			<color r= "0" g= "1" b= "0" />
+			<texture texture= "0" offx= "100" offy= "100" coefx= "5" coefy= "5" />
+			<brightness> 15.8 </brightness>
+			<reflection> 0 </reflection>
+			<refraction> 1 </refraction>
+			<transparency> 0 </transparency>
+		</material>
+		<material>
+			<color r= "0" g= "0" b= "1" />
+			<texture texture= "0" offx= "100" offy= "100" coefx= "5" coefy= "5" />
+			<brightness> 15.8 </brightness>
+			<reflection> 0.8 </reflection>
+			<refraction> 1 </refraction>
+			<transparency> 0 </transparency>
+		</material>
+		<material>
+			<color r= "0.5" g= "0.5" b= "0" />
+			<texture texture= "0" offx= "100" offy= "100" coefx= "5" coefy= "5" />
+			<brightness> 15.8 </brightness>
+			<reflection> 0 </reflection>
+			<refraction> 1 </refraction>
+			<transparency> 0 </transparency>
+		</material>
+		<material>
+			<color r= "0.5" g= "1" b= "0.5" />
+			<texture texture= "0" offx= "100" offy= "100" coefx= "5" coefy= "5" />
+			<brightness> 15.8 </brightness>
+			<reflection> 0 </reflection>
+			<refraction> 1 </refraction>
+			<transparency> 0 </transparency>
+		</material>
+		<material>
+			<color r= "0.5" g= "0" b= "0" />
+			<texture texture= "0" offx= "100" offy= "100" coefx= "5" coefy= "5" />
+			<brightness> 15.8 </brightness>
+			<reflection> 0.3 </reflection>
+			<refraction> 1 </refraction>
+			<transparency> 0 </transparency>
+		</material>
+		<material>
+			<color r= "0" g= "0.3" b= "0" />
+			<texture texture= "0" offx= "100" offy= "100" coefx= "5" coefy= "5" />
+			<brightness> 15.8 </brightness>
+			<reflection> 1 </reflection>
+			<refraction> 1 </refraction>
+			<transparency> 0 </transparency>
+		</material>
+	</materials>
+	<objects nb= "14" >
+		<object>
+			<type> sphere </type>
+			<position x= "200" y= "300" z= "200" />
+			<direction x= "1" y= "1" z= "1" />
+			<size> 150 </size>
+			<material> 1 </material>
+		</object>
+		<object>
+			<type> sphere </type>
+			<position x= "300" y= "300" z= "200" />
+			<direction x= "0" y= "1" z= "0" />
+			<size> 150 </size>
+			<material> 2 </material>
+		</object>
+		<object>
+			<type> sphere </type>
+			<position x= "400" y= "300" z= "200" />
+			<direction x= "1" y= "1" z= "1" />
+			<size> 150 </size>
+			<material> 3 </material>
+		</object>
+		<object>
+			<type> sphere </type>
+			<position x= "500" y= "300" z= "200" />
+			<direction x= "0" y= "1" z= "0" />
+			<size> 150 </size>
+			<material> 1 </material>
+		</object>
+		<object>
+			<type> sphere </type>
+			<position x= "600" y= "300" z= "200" />
+			<direction x= "1" y= "1" z= "1" />
+			<size> 150 </size>
+			<material> 2 </material>
+		</object>
+		<object>
+			<type> sphere </type>
+			<position x= "700" y= "300" z= "200" />
+			<direction x= "0" y= "1" z= "0" />
+			<size> 150 </size>
+			<material> 3 </material>
+		</object>
+		<object>
+			<type> sphere </type>
+			<position x= "900" y= "300" z= "200" />
+			<direction x= "0" y= "1" z= "2" />
+			<size> 150 </size>
+			<material> 1 </material>
+		</object>
+		<object>
+			<type> sphere </type>
+			<position x= "950" y= "250" z= "0" />
+			<direction x= "1" y= "1" z= "1" />
+			<size> 50 </size>
+			<material> 3 </material>
+		</object>
+		<object>
+			<type> sphere </type>
+			<position x= "950" y= "380" z= "0" />
+			<direction x= "0" y= "1" z= "0" />
+			<size> 50 </size>
+			<material> 7 </material>
+		</object>
+		<object>
+			<type> plane </type>
+			<position x= "300" y= "400" z= "600" />
+			<direction x= "0" y= "0" z= "1" />
+			<size> 50 </size>
+			<material> 4 </material>
+		</object>
+		<object>
+			<type> plane </type>
+			<position x= "300" y= "400" z= "200" />
+			<direction x= "0" y= "1" z= "0" />
+			<size> 50 </size>
+			<material> 5 </material>
+		</object>
+		<object>
+			<type> plane </type>
+			<position x= "300" y= "-500" z= "200" />
+			<direction x= "0" y= "1" z= "0" />
+			<size> 50 </size>
+			<material> 5 </material>
+		</object>
+		<object>
+			<type> cylinder </type>
+			<position x= "-600" y= "100" z= "150" />
+			<direction x= "0" y= "1" z= "0" />
+			<size> 100 </size>
+			<material> 7 </material>
+		</object>
+		<object>
+			<type> cone </type>
+			<position x= "1400" y= "200" z= "100" />
+			<direction x= "0" y= "1" z= "0" />
+			<size> 30 </size>
+			<material> 6 </material>
+		</object>
+	</objects>
+	<lights nb= "3" >
+		<light>
+			<position x= "3000" y= "-400" z= "-4000" />
+			<color r= "0.5" g= "0.5" b= "0.5" />
+		</light>
+		<light>
+			<position x= "-2200" y= "300" z= "-4000" />
+			<color r= "0.5" g= "0.5" b= "0.5" />
+		</light>
+		<light>
+			<position x= "-1000" y= "300" z= "-4000" />
+			<color r= "0.5" g= "0.5" b= "0.5" />
+		</light>
+	</lights>
+</scene>
