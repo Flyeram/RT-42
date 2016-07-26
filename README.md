@@ -1,12 +1,6 @@
-To compile on mac and linux
-make re
-
-inputs should be normalized with SDL2
-
+To compile on mac and linux "make re"
+you need SDL2 and SDL2_ttf to compile
 wa sd gt to move around
 left/right top/bot pageup/pagedown to rotate around
-
-alpha 1 to raise aliasing by 2
-alpha 2 to reduce aliasing by 2
-alpha 3 to take a screenshot (saved in screenshots folder)
-esc to quit
+to process auto render mode, please see folder world
+if you just want to test it out, "./auto_render.sh world/world.auto"
