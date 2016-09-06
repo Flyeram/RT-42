@@ -4,7 +4,7 @@ RT is a raytracer with the following possibilities : Different objects, Light, S
 
 # How to install
 
-To compile on mac and linux "make re"
+To compile on mac and linux `make re`
 you need SDL2 and SDL2_ttf to compile
 
 #How to use
