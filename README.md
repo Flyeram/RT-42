@@ -8,7 +8,7 @@ To compile on mac and linux `make re`.
 You need SDL2 and SDL2_ttf to compile
 
 #How to use
-Run ./RT "scene filename.
+Run `./RT "scene filename"`.
 `wa sd gt` to move around.
 `left/right` `top/bot` `pageup/pagedown` to rotate around.
 To process auto render mode, please see folder world.
